@@ -26,13 +26,9 @@ jobs:
 
       - name: Run scraper
         env:
+          PYTHONPATH: backend
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SECRET_API_KEY: ${{ secrets.SECRET_API_KEY }}
           BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        run: |
-          $env:PYTHONPATH = "backend"
-          python -m scraper.main
-# Workflow validation marker
-
-
+        run: python -m scraper.main
