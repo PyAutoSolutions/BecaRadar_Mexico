@@ -27,8 +27,9 @@ jobs:
       - name: Run scraper
         env:
           PYTHONPATH: backend
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: sqlite:///./becaradar.db
           SECRET_API_KEY: ${{ secrets.SECRET_API_KEY }}
           BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: python -m scraper.main
+
