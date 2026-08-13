@@ -24,6 +24,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .
 
+      - name: Initialize database
+        env:
+          PYTHONPATH: backend
+          DATABASE_URL: sqlite:///./becaradar.db
+        run: python -m alembic -c backend/alembic.ini upgrade head
+
       - name: Run scraper
         env:
           PYTHONPATH: backend
@@ -32,4 +38,3 @@ jobs:
           BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: python -m scraper.main
-
