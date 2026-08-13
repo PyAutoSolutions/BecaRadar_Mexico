@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copiar manifiesto raíz e instalar el paquete en modo editable/completo
+COPY pyproject.toml .
+COPY backend ./backend
+COPY bot ./bot
+
+RUN pip install --no-cache-dir .
+
+# El bot no expone puertos ya que funciona en modo Polling hacia la API de Telegram
+CMD ["python", "-m", "bot.main"]

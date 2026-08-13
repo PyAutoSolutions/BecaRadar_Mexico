@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "becaradar-mexico"
+version = "0.1.0"
+description = "Plataforma centralizada y bot de Telegram para notificar sobre becas en México."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy",
+    "alembic",
+    "pydantic",
+    "pydantic-settings",
+    "python-telegram-bot",
+    "httpx",
+    "requests",
+    "beautifulsoup4"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff"
+]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+
+[tool.ruff.lint]
+ignore = ["B008"]

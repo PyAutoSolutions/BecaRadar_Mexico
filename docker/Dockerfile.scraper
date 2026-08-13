@@ -1,0 +1,14 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Copiar manifiesto e instalar dependencias
+COPY pyproject.toml .
+COPY backend/app/db ./backend/app/db
+COPY backend/app/core ./backend/app/core
+COPY scraper ./scraper
+
+RUN pip install --no-cache-dir .
+
+# El scraper corre como una tarea batch y termina (no requiere puerto expuesto)
+CMD ["python", "-m", "scraper.main"]

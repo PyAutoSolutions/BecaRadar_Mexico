@@ -1,0 +1,39 @@
+# Entornos y Secretos
+.env.development
+.env.production
+.env
+
+# Entornos virtuales de Python
+.venv/
+env/
+venv/
+
+# CachÃ© y binarios de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de datos SQLite y Logs
+data/*.db
+logs/*.jsonl
+
+# Pruebas
+.pytest_cache/
+.coverage
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/.npm/
+# Archivos locales de revisión y copias
+config_para_revisar.txt
+conftest_para_revisar.txt
+*_OLD.zip
+*.zip
+
+
+# Archivos generados automáticamente
+becaradar_mexico.egg-info/
+data/*.jsonl
+

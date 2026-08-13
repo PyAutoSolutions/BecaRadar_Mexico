@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Backend (FastAPI)",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app.main:app", "--reload"],
+      "cwd": "${workspaceFolder}/backend"
+    },
+    {
+      "name": "Bot (polling)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/bot/main.py"
+    },
+    {
+      "name": "Scraper (una fuente)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/scraper/main.py",
+      "args": ["--fuente=tec"]
+    }
+  ]
+}
