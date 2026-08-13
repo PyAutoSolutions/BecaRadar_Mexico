@@ -1,4 +1,4 @@
-name: Scraper Cron Job
+﻿name: Scraper Cron Job
 
 on:
   schedule:
@@ -31,5 +31,8 @@ jobs:
           BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
+          $env:PYTHONPATH = "backend"
           python -m scraper.main
 # Workflow validation marker
+
+
