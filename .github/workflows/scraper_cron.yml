@@ -25,15 +25,15 @@ jobs:
           pip install -e .
 
       - name: Initialize database
+        working-directory: backend
         env:
-          PYTHONPATH: backend
-          DATABASE_URL: sqlite:///./becaradar.db
-        run: python -m alembic -c backend/alembic.ini upgrade head
+          DATABASE_URL: sqlite:////home/runner/work/BecaRadar_Mexico/BecaRadar_Mexico/becaradar.db
+        run: python -m alembic upgrade head
 
       - name: Run scraper
         env:
           PYTHONPATH: backend
-          DATABASE_URL: sqlite:///./becaradar.db
+          DATABASE_URL: sqlite:////home/runner/work/BecaRadar_Mexico/BecaRadar_Mexico/becaradar.db
           SECRET_API_KEY: ${{ secrets.SECRET_API_KEY }}
           BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
