@@ -32,3 +32,4 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
           python -m scraper.main
+# Workflow validation marker
