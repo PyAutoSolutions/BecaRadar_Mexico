@@ -1,6 +1,6 @@
 # BecaRadar México 🎓🔍
 
-[![CI](https://github.com/tu-usuario/becaradar-mexico/actions/workflows/ci.yml/badge.svg)](https://github.com/tu-usuario/becaradar-mexico/actions/workflows/ci.yml)
+[![CI](https://github.com/PyAutoSolutions/BecaRadar_Mexico/actions/workflows/ci.yml/badge.svg)](https://github.com/PyAutoSolutions/BecaRadar_Mexico/actions/workflows/ci.yml)
 
 BecaRadar México es un sistema automatizado que rastrea, estandariza y notifica sobre convocatorias de becas vigentes en México a través de un Bot de Telegram, eliminando la fricción de buscar apoyos educativos en decenas de portales gubernamentales y privados.
 
@@ -10,5 +10,5 @@ BecaRadar México es un sistema automatizado que rastrea, estandariza y notifica
 
 1. Clona el repositorio:
    ```bash
-   git clone [https://github.com/tu-usuario/becaradar-mexico.git](https://github.com/tu-usuario/becaradar-mexico.git)
-   cd becaradar-mexico
+   git clone [https://github.com/PyAutoSolutions/BecaRadar_Mexico.git](https://github.com/PyAutoSolutions/BecaRadar_Mexico.git)
+   cd BecaRadar_Mexico
