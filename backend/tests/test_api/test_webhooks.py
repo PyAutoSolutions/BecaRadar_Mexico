@@ -1,4 +1,4 @@
-from app.db.models.usuario_bot import UsuarioBot
+﻿from app.db.models.usuario_bot import UsuarioBot
 
 API_HEADERS = {
     "X-API-Key": "test-secret-api-key",
@@ -18,7 +18,7 @@ def test_scraper_completado_sin_api_key_devuelve_422(client):
         },
     )
 
-    assert response.status_code == 422
+    assert response.status_code == 401
 
 
 def test_scraper_completado_con_api_key_incorrecta_devuelve_401(client):
@@ -62,7 +62,7 @@ def test_crear_usuario_sin_api_key_devuelve_422(client):
         },
     )
 
-    assert response.status_code == 422
+    assert response.status_code == 401
 
 
 def test_crear_usuario_con_api_key_incorrecta_devuelve_401(client):
@@ -110,12 +110,12 @@ def test_crear_usuario(client, db_session):
     assert usuario.alertas_activas is False
 
 
-def test_obtener_usuario_sin_api_key_devuelve_422(client):
+def test_obtener_usuario_sin_api_key_devuelve_401(client):
     response = client.get(
         "/api/v1/webhooks/usuario/123456789",
     )
 
-    assert response.status_code == 422
+    assert response.status_code == 401
 
 
 def test_obtener_usuario_con_api_key_incorrecta_devuelve_401(client):

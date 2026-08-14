@@ -1,3 +1,4 @@
+﻿import hashlib
 from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import func, or_, select
@@ -59,7 +60,7 @@ class BecaService:
             )
 
         # ---------------------------------------------------------
-        # Institución
+        # InstituciÃ³n
         # ---------------------------------------------------------
         if filtros.institucion_id is not None:
             query = query.where(
@@ -89,7 +90,7 @@ class BecaService:
             )
 
         # ---------------------------------------------------------
-        # Ubicación
+        # UbicaciÃ³n
         # ---------------------------------------------------------
         if filtros.ubicacion:
             ubicacion = filtros.ubicacion.strip()
@@ -97,14 +98,14 @@ class BecaService:
             if ubicacion.lower() in {
                 "cdmx",
                 "ciudad de mexico",
-                "ciudad de méxico",
+                "ciudad de mÃ©xico",
             }:
                 # Acepta las dos formas en que puede estar
-                # almacenada la ubicación.
+                # almacenada la ubicaciÃ³n.
                 ubicacion_filter = or_(
                     Beca.ubicacion.ilike("%CDMX%"),
                     Beca.ubicacion.ilike(
-                        "%Ciudad de México%"
+                        "%Ciudad de MÃ©xico%"
                     ),
                     Beca.ubicacion.ilike(
                         "%Ciudad de Mexico%"
@@ -124,7 +125,7 @@ class BecaService:
             )
 
         # ---------------------------------------------------------
-        # Búsqueda libre
+        # BÃºsqueda libre
         # ---------------------------------------------------------
         if filtros.q:
             texto = filtros.q.strip()
@@ -178,7 +179,7 @@ class BecaService:
         )
 
         # ---------------------------------------------------------
-        # Paginación
+        # PaginaciÃ³n
         # ---------------------------------------------------------
         items = (
             self.db.scalars(
@@ -241,7 +242,7 @@ class BecaService:
             estado=EstadoBeca.abierta,
             link_oficial=str(data.link_oficial),
             fuente_scraper="manual",
-            hash_contenido=None,
+            hash_contenido=hashlib.sha1(f"{data.nombre}|{data.fecha_limite}|{data.cobertura}|{data.requisitos}".encode("utf-8")).hexdigest(),
             ultima_verificacion=datetime.now(UTC).replace(tzinfo=None),
         )
 

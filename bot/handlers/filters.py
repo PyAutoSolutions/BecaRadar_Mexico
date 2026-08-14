@@ -1,4 +1,4 @@
-import json
+﻿import json
 import logging
 
 import httpx
@@ -22,7 +22,7 @@ async def alertas_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         nuevo_estado = not estado_actual
         
         # Actualizar
-        await api_client.post(
+        response = await api_client.post(
             "/webhooks/usuario",
             json={"telegram_user_id": user.id, "alertas_activas": nuevo_estado}
         )
@@ -36,10 +36,11 @@ async def alertas_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
 async def guardar_filtro_backend(user_id: int, api_client: httpx.AsyncClient, filtros_dict: dict) -> bool:
     try:
         filtros_str = json.dumps(filtros_dict) if filtros_dict else None
-        await api_client.post(
+        response = await api_client.post(
             "/webhooks/usuario",
             json={"telegram_user_id": user_id, "filtros_guardados": filtros_str}
         )
+        response.raise_for_status()
         return True
     except httpx.HTTPError as e:
         logger.error(f"Error guardando filtro para {user_id}: {e}")
@@ -54,13 +55,13 @@ async def guardar_filtro_comando(update: Update, context: ContextTypes.DEFAULT_T
     for arg in context.args:
         if "=" in arg:
             k, v = arg.split("=", 1)
-            # Manejo básico de bools
+            # Manejo bÃ¡sico de bools
             if v.lower() == "true": v = True
             elif v.lower() == "false": v = False
             filtros[k] = v
             
     exito = await guardar_filtro_backend(user.id, api_client, filtros)
     if exito:
-        await update.message.reply_text("✅ Tu preferencia de búsqueda ha sido guardada. Te enviaré notificaciones basadas en este filtro si tienes /alertas activas.")
+        await update.message.reply_text("âœ… Tu preferencia de bÃºsqueda ha sido guardada. Te enviarÃ© notificaciones basadas en este filtro si tienes /alertas activas.")
     else:
-        await update.message.reply_text("❌ No pude guardar tu preferencia. Intenta de nuevo más tarde.")
+        await update.message.reply_text("âŒ No pude guardar tu preferencia. Intenta de nuevo mÃ¡s tarde.")
